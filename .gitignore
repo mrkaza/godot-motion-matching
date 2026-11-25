@@ -1,0 +1,53 @@
+# Godot
+.godot/
+*.tmp
+*.TMP
+export_presets.cfg
+
+# Epic's Game Animation Sample content (animations, meshes, skeletons, sounds, data), exported by
+# tools/extract_gasp.ps1. Never committed: everyone exports it from their own copy of the sample.
+extracted/
+# Unreal exports and assets anywhere else in the tree
+*.fbx
+*.fbx.import
+*.uasset
+*.umap
+*.t3d
+
+# Pose search databases, built from extracted/ by tools/extract_gasp.ps1
+databases/
+
+# Recorded takes and test renders
+renders/
+
+# Native build output (the prebuilt DLLs in bin/ are kept; Godot writes ~ copies for hot reload)
+bin/~*
+*.o
+*.obj
+*.a
+*.lib
+*.exp
+*.pdb
+.sconsign*.dblite
+__pycache__/
+*.pyc
+
+# Meshes and textures: the repository holds code only. Custom bodies (Mannequin.BODY_MESHES) stay local.
+assets/
+*.glb
+*.gltf
+*.blend
+*.png
+*.jpg
+*.jpeg
+
+# Editor and tool state
+.claude/
+.vscode/
+.idea/
+*.blend1
+Thumbs.db
+.DS_Store
+
+# Local-only editor plugins
+addons/obs_record/

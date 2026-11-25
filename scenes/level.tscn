@@ -1,0 +1,2119 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://extracted/mesh/SKM_Manny_Simple.fbx" id="1_2q6dc"]
+
+[sub_resource type="Environment" id="Environment_w7c3h"]
+background_mode = 1
+background_color = Color(0.035, 0.035, 0.04, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.55, 0.58, 0.65, 1)
+ambient_light_energy = 0.35
+tonemap_mode = 4
+ssao_enabled = true
+ssao_intensity = 1.5
+glow_enabled = true
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.035, 0.035, 0.04, 1)
+fog_density = 1.0
+fog_depth_curve = 1.6
+fog_depth_end = 32.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w8frs"]
+size = Vector3(200, 10, 200)
+
+[sub_resource type="Shader" id="Shader_mx8sn"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ppgk2"]
+render_priority = 0
+shader = SubResource("Shader_mx8sn")
+shader_parameter/base = Color(0.075, 0.075, 0.08, 1)
+shader_parameter/line = Color(0.186, 0.186, 0.1904, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2r41h"]
+size = Vector3(200, 10, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_klq6b"]
+size = Vector3(200, 1, 200)
+
+[sub_resource type="Shader" id="Shader_b121j"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8c41q"]
+render_priority = 0
+shader = SubResource("Shader_b121j")
+shader_parameter/base = Color(0.075, 0.075, 0.08, 1)
+shader_parameter/line = Color(0.186, 0.186, 0.1904, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_olg7q"]
+size = Vector3(200, 1, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t1rx8"]
+size = Vector3(4.2999997, 0.19999999, 2)
+
+[sub_resource type="Shader" id="Shader_8iemx"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_64w2a"]
+render_priority = 0
+shader = SubResource("Shader_8iemx")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fpun6"]
+size = Vector3(4.2999997, 0.19999999, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wc255"]
+size = Vector3(4.2999997, 0.19999999, 2)
+
+[sub_resource type="Shader" id="Shader_arp2o"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ux5qa"]
+render_priority = 0
+shader = SubResource("Shader_arp2o")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_82cfe"]
+size = Vector3(4.2999997, 0.19999999, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gunhw"]
+size = Vector3(0.19999999, 1, 2)
+
+[sub_resource type="Shader" id="Shader_8gofh"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h6wmr"]
+render_priority = 0
+shader = SubResource("Shader_8gofh")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pqd0y"]
+size = Vector3(0.19999999, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5k0ak"]
+size = Vector3(0.5, 1, 1)
+
+[sub_resource type="Shader" id="Shader_wu01b"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ies3"]
+render_priority = 0
+shader = SubResource("Shader_wu01b")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xy2fk"]
+size = Vector3(0.5, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cmcjb"]
+size = Vector3(7, 1, 2)
+
+[sub_resource type="Shader" id="Shader_556r4"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7agi7"]
+render_priority = 0
+shader = SubResource("Shader_556r4")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kih21"]
+size = Vector3(7, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w3o6u"]
+size = Vector3(4, 2.5, 2)
+
+[sub_resource type="Shader" id="Shader_2e2fo"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gur6y"]
+render_priority = 0
+shader = SubResource("Shader_2e2fo")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v3why"]
+size = Vector3(4, 2.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_asl66"]
+size = Vector3(0.19999999, 1, 2)
+
+[sub_resource type="Shader" id="Shader_2jdvr"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q4oe8"]
+render_priority = 0
+shader = SubResource("Shader_2jdvr")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_svjb4"]
+size = Vector3(0.19999999, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c1pbi"]
+size = Vector3(0.19999999, 1, 2)
+
+[sub_resource type="Shader" id="Shader_535f6"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_50fbu"]
+render_priority = 0
+shader = SubResource("Shader_535f6")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0fmhk"]
+size = Vector3(0.19999999, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iafhg"]
+size = Vector3(0.5, 1, 2)
+
+[sub_resource type="Shader" id="Shader_cr74b"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uhfbm"]
+render_priority = 0
+shader = SubResource("Shader_cr74b")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lqb7q"]
+size = Vector3(0.5, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ok3ci"]
+size = Vector3(4, 0.19999999, 4)
+
+[sub_resource type="Shader" id="Shader_hv3ux"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j4eoh"]
+render_priority = 0
+shader = SubResource("Shader_hv3ux")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bhb1k"]
+size = Vector3(4, 0.19999999, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tcyu4"]
+size = Vector3(4, 2, 4)
+
+[sub_resource type="Shader" id="Shader_vmndo"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bo6tc"]
+render_priority = 0
+shader = SubResource("Shader_vmndo")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7iqcu"]
+size = Vector3(4, 2, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v4d4p"]
+size = Vector3(4, 1, 4)
+
+[sub_resource type="Shader" id="Shader_30hdq"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3fqns"]
+render_priority = 0
+shader = SubResource("Shader_30hdq")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sc620"]
+size = Vector3(4, 1, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_421lv"]
+size = Vector3(1, 2, 2)
+
+[sub_resource type="Shader" id="Shader_oksur"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jide8"]
+render_priority = 0
+shader = SubResource("Shader_oksur")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4h8xp"]
+size = Vector3(1, 2, 2)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ql8jr"]
+radius = 1.8749994
+
+[sub_resource type="Shader" id="Shader_5ga6x"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nj2gj"]
+render_priority = 0
+shader = SubResource("Shader_5ga6x")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_msn66"]
+top_radius = 1.8749994
+bottom_radius = 1.8749994
+radial_segments = 48
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xmwm8"]
+size = Vector3(4, 0.19999999, 2)
+
+[sub_resource type="Shader" id="Shader_jydfl"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0n8q"]
+render_priority = 0
+shader = SubResource("Shader_jydfl")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d5irf"]
+size = Vector3(4, 0.19999999, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ltwek"]
+size = Vector3(2, 0.19999999, 2)
+
+[sub_resource type="Shader" id="Shader_vry8j"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_idnaj"]
+render_priority = 0
+shader = SubResource("Shader_vry8j")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vwqyp"]
+size = Vector3(2, 0.19999999, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_smfc2"]
+size = Vector3(0.19999999, 10, 2)
+
+[sub_resource type="Shader" id="Shader_s1acf"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u5upv"]
+render_priority = 0
+shader = SubResource("Shader_s1acf")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_om2me"]
+size = Vector3(0.19999999, 10, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iij8i"]
+size = Vector3(0.19999999, 1, 4)
+
+[sub_resource type="Shader" id="Shader_4qdnu"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7kuto"]
+render_priority = 0
+shader = SubResource("Shader_4qdnu")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k1glb"]
+size = Vector3(0.19999999, 1, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_clbla"]
+size = Vector3(0.19999999, 1.1999999, 4)
+
+[sub_resource type="Shader" id="Shader_ebg7i"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iobf8"]
+render_priority = 0
+shader = SubResource("Shader_ebg7i")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kbk4x"]
+size = Vector3(0.19999999, 1.1999999, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p1qlp"]
+size = Vector3(0.19999999, 2, 2)
+
+[sub_resource type="Shader" id="Shader_1sbqr"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bdomq"]
+render_priority = 0
+shader = SubResource("Shader_1sbqr")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tvrmj"]
+size = Vector3(0.19999999, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ujeh"]
+size = Vector3(0.19999999, 1.1999999, 2)
+
+[sub_resource type="Shader" id="Shader_5bunc"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ty36l"]
+render_priority = 0
+shader = SubResource("Shader_5bunc")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_speit"]
+size = Vector3(0.19999999, 1.1999999, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wb1uj"]
+size = Vector3(0.19999999, 2, 2)
+
+[sub_resource type="Shader" id="Shader_sy37w"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f55ft"]
+render_priority = 0
+shader = SubResource("Shader_sy37w")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ovgnb"]
+size = Vector3(0.19999999, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kwu62"]
+size = Vector3(0.19999999, 1, 2)
+
+[sub_resource type="Shader" id="Shader_y73rr"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7b3e"]
+render_priority = 0
+shader = SubResource("Shader_y73rr")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vfkgb"]
+size = Vector3(0.19999999, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ep04"]
+size = Vector3(0.19999999, 2, 2)
+
+[sub_resource type="Shader" id="Shader_236yy"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xrpag"]
+render_priority = 0
+shader = SubResource("Shader_236yy")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4a5sc"]
+size = Vector3(0.19999999, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w33q4"]
+size = Vector3(0.19999999, 2.2, 2)
+
+[sub_resource type="Shader" id="Shader_s2ybf"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dk6qd"]
+render_priority = 0
+shader = SubResource("Shader_s2ybf")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nfwxq"]
+size = Vector3(0.19999999, 2.2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jptc6"]
+size = Vector3(0.19999999, 1, 2)
+
+[sub_resource type="Shader" id="Shader_5fap2"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1d5u2"]
+render_priority = 0
+shader = SubResource("Shader_5fap2")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fdwjd"]
+size = Vector3(0.19999999, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gxvwf"]
+size = Vector3(0.19999999, 2, 2)
+
+[sub_resource type="Shader" id="Shader_hgjl6"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fkalo"]
+render_priority = 0
+shader = SubResource("Shader_hgjl6")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tmks3"]
+size = Vector3(0.19999999, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_appgx"]
+size = Vector3(0.19999999, 2, 4)
+
+[sub_resource type="Shader" id="Shader_0g86u"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y2y7i"]
+render_priority = 0
+shader = SubResource("Shader_0g86u")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iri6o"]
+size = Vector3(0.19999999, 2, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_albe2"]
+size = Vector3(0.19999999, 1, 4)
+
+[sub_resource type="Shader" id="Shader_pmw43"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d3p7y"]
+render_priority = 0
+shader = SubResource("Shader_pmw43")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_plen7"]
+size = Vector3(0.19999999, 1, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_epb10"]
+size = Vector3(0.19999999, 1, 2)
+
+[sub_resource type="Shader" id="Shader_5ikxq"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sr7al"]
+render_priority = 0
+shader = SubResource("Shader_5ikxq")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cv87a"]
+size = Vector3(0.19999999, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_54w2y"]
+size = Vector3(0.19999999, 2, 4)
+
+[sub_resource type="Shader" id="Shader_s7enw"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n5gcj"]
+render_priority = 0
+shader = SubResource("Shader_s7enw")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jud3p"]
+size = Vector3(0.19999999, 2, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ndhr"]
+size = Vector3(0.19999999, 4, 4)
+
+[sub_resource type="Shader" id="Shader_ss5me"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6t3ch"]
+render_priority = 0
+shader = SubResource("Shader_ss5me")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1l6te"]
+size = Vector3(0.19999999, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b3ejn"]
+size = Vector3(0.19999999, 4, 4)
+
+[sub_resource type="Shader" id="Shader_pn2dd"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c1c2k"]
+render_priority = 0
+shader = SubResource("Shader_pn2dd")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qbjlx"]
+size = Vector3(0.19999999, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_30o8g"]
+size = Vector3(0.19999999, 4, 4)
+
+[sub_resource type="Shader" id="Shader_jvf0p"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p7frq"]
+render_priority = 0
+shader = SubResource("Shader_jvf0p")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g3e2o"]
+size = Vector3(0.19999999, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_slf4x"]
+size = Vector3(0.19999999, 4, 4)
+
+[sub_resource type="Shader" id="Shader_ys6ug"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ypo2r"]
+render_priority = 0
+shader = SubResource("Shader_ys6ug")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vnpc5"]
+size = Vector3(0.19999999, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_db5hv"]
+size = Vector3(0.19999999, 4, 4)
+
+[sub_resource type="Shader" id="Shader_ttpyg"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6cpub"]
+render_priority = 0
+shader = SubResource("Shader_ttpyg")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ffpg5"]
+size = Vector3(0.19999999, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_43d7i"]
+size = Vector3(0.19999999, 4, 4)
+
+[sub_resource type="Shader" id="Shader_xcbo0"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cutyp"]
+render_priority = 0
+shader = SubResource("Shader_xcbo0")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8xc4d"]
+size = Vector3(0.19999999, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_83thi"]
+size = Vector3(0.19999999, 4, 4)
+
+[sub_resource type="Shader" id="Shader_ikv53"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_koa75"]
+render_priority = 0
+shader = SubResource("Shader_ikv53")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2op70"]
+size = Vector3(0.19999999, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3xenl"]
+size = Vector3(0.19999999, 4, 4)
+
+[sub_resource type="Shader" id="Shader_rgio3"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yynpt"]
+render_priority = 0
+shader = SubResource("Shader_rgio3")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v65ao"]
+size = Vector3(0.19999999, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ppff"]
+size = Vector3(0.19999999, 2, 4)
+
+[sub_resource type="Shader" id="Shader_gwyuy"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xwsfi"]
+render_priority = 0
+shader = SubResource("Shader_gwyuy")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cwhec"]
+size = Vector3(0.19999999, 2, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d5ouc"]
+size = Vector3(0.19999999, 2, 4)
+
+[sub_resource type="Shader" id="Shader_vwvcq"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6bfqh"]
+render_priority = 0
+shader = SubResource("Shader_vwvcq")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rrs1e"]
+size = Vector3(0.19999999, 2, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g31u5"]
+size = Vector3(0.19999999, 2, 4)
+
+[sub_resource type="Shader" id="Shader_dcfgc"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_td5iv"]
+render_priority = 0
+shader = SubResource("Shader_dcfgc")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4fwy4"]
+size = Vector3(0.19999999, 2, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l5p7p"]
+size = Vector3(0.19999999, 2, 4)
+
+[sub_resource type="Shader" id="Shader_rbs36"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vky28"]
+render_priority = 0
+shader = SubResource("Shader_rbs36")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d635u"]
+size = Vector3(0.19999999, 2, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vbci2"]
+size = Vector3(0.19999999, 2, 4)
+
+[sub_resource type="Shader" id="Shader_kpr2a"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1lic4"]
+render_priority = 0
+shader = SubResource("Shader_kpr2a")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pudow"]
+size = Vector3(0.19999999, 2, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2bamd"]
+size = Vector3(0.19999999, 2, 4)
+
+[sub_resource type="Shader" id="Shader_apeb7"]
+code = "
+shader_type spatial;
+uniform vec3 base : source_color = vec3(0.42, 0.44, 0.47);
+uniform vec3 line : source_color = vec3(0.30, 0.31, 0.33);
+varying vec3 world_pos;
+void vertex() { world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz; }
+void fragment() {
+	vec2 g = abs(fract(world_pos.xz - 0.5) - 0.5) / fwidth(world_pos.xz);
+	float l = 1.0 - min(min(g.x, g.y), 1.0);
+	vec2 g10 = abs(fract(world_pos.xz * 0.1 - 0.5) - 0.5) / fwidth(world_pos.xz * 0.1);
+	float l10 = 1.0 - min(min(g10.x, g10.y), 1.0);
+	ALBEDO = mix(base, line, max(l * 0.6, l10));
+	ROUGHNESS = 0.9;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_12ntp"]
+render_priority = 0
+shader = SubResource("Shader_apeb7")
+shader_parameter/base = Color(0.3, 0.31, 0.33, 1)
+shader_parameter/line = Color(0.384, 0.3928, 0.4104, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wdhet"]
+size = Vector3(0.19999999, 2, 4)
+
+[node name="Level" type="Node3D" unique_id=1800308006]
+
+[node name="@WorldEnvironment@2" type="WorldEnvironment" parent="." unique_id=1524546202]
+environment = SubResource("Environment_w7c3h")
+
+[node name="@DirectionalLight3D@3" type="DirectionalLight3D" parent="." unique_id=186880303]
+transform = Transform3D(0.7880108, -0.48514786, 0.37903908, 0, 0.6156615, 0.7880107, -0.6156615, -0.62096095, 0.4851479, 0, 0, 0)
+light_energy = 1.6
+shadow_enabled = true
+directional_shadow_max_distance = 40.0
+
+[node name="@DirectionalLight3D@4" type="DirectionalLight3D" parent="." unique_id=1742821051]
+transform = Transform3D(-0.8660254, 0.17101008, -0.46984637, 0, 0.9396926, 0.34202012, 0.50000006, 0.2961981, -0.81379765, 0, 0, 0)
+light_color = Color(0.7, 0.8, 1, 1)
+light_energy = 0.6
+
+[node name="@StaticBody3D@7" type="StaticBody3D" parent="." unique_id=698527317]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, -4)
+
+[node name="@CollisionShape3D@5" type="CollisionShape3D" parent="@StaticBody3D@7" unique_id=1656467338]
+shape = SubResource("BoxShape3D_w8frs")
+
+[node name="@MeshInstance3D@6" type="MeshInstance3D" parent="@StaticBody3D@7" unique_id=2070985536]
+material_override = SubResource("ShaderMaterial_ppgk2")
+mesh = SubResource("BoxMesh_2r41h")
+
+[node name="@StaticBody3D@10" type="StaticBody3D" parent="." unique_id=1485538316]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.47, 196)
+
+[node name="@CollisionShape3D@8" type="CollisionShape3D" parent="@StaticBody3D@10" unique_id=984215387]
+shape = SubResource("BoxShape3D_klq6b")
+
+[node name="@MeshInstance3D@9" type="MeshInstance3D" parent="@StaticBody3D@10" unique_id=451079576]
+material_override = SubResource("ShaderMaterial_8c41q")
+mesh = SubResource("BoxMesh_olg7q")
+
+[node name="TraversalGym" type="Node3D" parent="." unique_id=1405865815]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8, 0, -20)
+
+[node name="Course3" type="Node3D" parent="TraversalGym" unique_id=1539418414]
+
+[node name="LevelBlock2" type="StaticBody3D" parent="TraversalGym/Course3" unique_id=2010814171]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.350002, 0.099999994, -8)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@16" type="CollisionShape3D" parent="TraversalGym/Course3/LevelBlock2" unique_id=1159857285]
+shape = SubResource("BoxShape3D_t1rx8")
+
+[node name="@MeshInstance3D@17" type="MeshInstance3D" parent="TraversalGym/Course3/LevelBlock2" unique_id=1171803592]
+material_override = SubResource("ShaderMaterial_64w2a")
+mesh = SubResource("BoxMesh_fpun6")
+
+[node name="LevelBlock" type="StaticBody3D" parent="TraversalGym/Course3" unique_id=1672656082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.350002, 0.099999994, -8)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@18" type="CollisionShape3D" parent="TraversalGym/Course3/LevelBlock" unique_id=1699945016]
+shape = SubResource("BoxShape3D_wc255")
+
+[node name="@MeshInstance3D@19" type="MeshInstance3D" parent="TraversalGym/Course3/LevelBlock" unique_id=1759886957]
+material_override = SubResource("ShaderMaterial_ux5qa")
+mesh = SubResource("BoxMesh_82cfe")
+
+[node name="LevelBlock_Traversable8" type="StaticBody3D" parent="TraversalGym/Course3" unique_id=1280662661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.1, 0.5, -8)
+
+[node name="@CollisionShape3D@87" type="CollisionShape3D" parent="TraversalGym/Course3/LevelBlock_Traversable8" unique_id=993053246]
+shape = SubResource("BoxShape3D_gunhw")
+
+[node name="@MeshInstance3D@88" type="MeshInstance3D" parent="TraversalGym/Course3/LevelBlock_Traversable8" unique_id=296741580]
+material_override = SubResource("ShaderMaterial_h6wmr")
+mesh = SubResource("BoxMesh_pqd0y")
+
+[node name="@Label3D@89" type="Label3D" parent="TraversalGym/Course3" unique_id=1972349402]
+transform = Transform3D(1.2246469e-16, -2.758e-42, -1, 2.2524315e-26, 1, 0, 1, -2.2524315e-26, 1.2246469e-16, 31.9998, 0.5, -8)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "1 M"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock_Traversable11" type="StaticBody3D" parent="TraversalGym/Course3" unique_id=1703447485]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.25, 0.5, -8)
+
+[node name="@CollisionShape3D@90" type="CollisionShape3D" parent="TraversalGym/Course3/LevelBlock_Traversable11" unique_id=2060632222]
+shape = SubResource("BoxShape3D_5k0ak")
+
+[node name="@MeshInstance3D@91" type="MeshInstance3D" parent="TraversalGym/Course3/LevelBlock_Traversable11" unique_id=729401081]
+material_override = SubResource("ShaderMaterial_3ies3")
+mesh = SubResource("BoxMesh_xy2fk")
+
+[node name="@Label3D@92" type="Label3D" parent="TraversalGym/Course3" unique_id=1502067727]
+transform = Transform3D(1.2246469e-16, -2.758e-42, -1, 2.2524315e-26, 1, 0, 1, -2.2524315e-26, 1.2246469e-16, 35.999496, 0.5, -8)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "1 M"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock_Traversable12" type="StaticBody3D" parent="TraversalGym/Course3" unique_id=781299324]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.5, 0.5, -8)
+
+[node name="@CollisionShape3D@93" type="CollisionShape3D" parent="TraversalGym/Course3/LevelBlock_Traversable12" unique_id=638527870]
+shape = SubResource("BoxShape3D_cmcjb")
+
+[node name="@MeshInstance3D@94" type="MeshInstance3D" parent="TraversalGym/Course3/LevelBlock_Traversable12" unique_id=283211120]
+material_override = SubResource("ShaderMaterial_7agi7")
+mesh = SubResource("BoxMesh_kih21")
+
+[node name="@Label3D@95" type="Label3D" parent="TraversalGym/Course3" unique_id=472619169]
+transform = Transform3D(1.2246469e-16, -2.758e-42, -1, 2.2524315e-26, 1, 0, 1, -2.2524315e-26, 1.2246469e-16, 49.992996, 0.5, -8)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "1 M"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock_Traversable13" type="StaticBody3D" parent="TraversalGym/Course3" unique_id=1210184841]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 2.25, -8)
+
+[node name="@CollisionShape3D@96" type="CollisionShape3D" parent="TraversalGym/Course3/LevelBlock_Traversable13" unique_id=69748263]
+shape = SubResource("BoxShape3D_w3o6u")
+
+[node name="@MeshInstance3D@97" type="MeshInstance3D" parent="TraversalGym/Course3/LevelBlock_Traversable13" unique_id=2100132984]
+material_override = SubResource("ShaderMaterial_gur6y")
+mesh = SubResource("BoxMesh_v3why")
+
+[node name="@Label3D@98" type="Label3D" parent="TraversalGym/Course3" unique_id=325728187]
+transform = Transform3D(1.2246469e-16, -2.758e-42, -1, 2.2524315e-26, 1, 0, 1, -2.2524315e-26, 1.2246469e-16, 52.996, 2.25, -8)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "2,5 M"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock_Traversable14" type="StaticBody3D" parent="TraversalGym/Course3" unique_id=52971795]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.899998, 4, -8)
+
+[node name="@CollisionShape3D@99" type="CollisionShape3D" parent="TraversalGym/Course3/LevelBlock_Traversable14" unique_id=462857257]
+shape = SubResource("BoxShape3D_asl66")
+
+[node name="@MeshInstance3D@100" type="MeshInstance3D" parent="TraversalGym/Course3/LevelBlock_Traversable14" unique_id=1464620389]
+material_override = SubResource("ShaderMaterial_q4oe8")
+mesh = SubResource("BoxMesh_svjb4")
+
+[node name="@Label3D@101" type="Label3D" parent="TraversalGym/Course3" unique_id=1970779137]
+transform = Transform3D(1.2246469e-16, -2.758e-42, -1, 2.2524315e-26, 1, 0, 1, -2.2524315e-26, 1.2246469e-16, 56.799797, 4, -8)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "1 M"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock_Traversable15" type="StaticBody3D" parent="TraversalGym/Course3" unique_id=1954193297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.1, 0.5, -8)
+
+[node name="@CollisionShape3D@102" type="CollisionShape3D" parent="TraversalGym/Course3/LevelBlock_Traversable15" unique_id=803012600]
+shape = SubResource("BoxShape3D_c1pbi")
+
+[node name="@MeshInstance3D@103" type="MeshInstance3D" parent="TraversalGym/Course3/LevelBlock_Traversable15" unique_id=385178251]
+material_override = SubResource("ShaderMaterial_50fbu")
+mesh = SubResource("BoxMesh_0fmhk")
+
+[node name="@Label3D@104" type="Label3D" parent="TraversalGym/Course3" unique_id=313688040]
+transform = Transform3D(1.2246469e-16, -2.758e-42, -1, 2.2524315e-26, 1, 0, 1, -2.2524315e-26, 1.2246469e-16, 39.9998, 0.5, -8)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "1 M"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock_Traversable17" type="StaticBody3D" parent="TraversalGym/Course3" unique_id=1755616173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.25, 0.7, -8)
+
+[node name="@CollisionShape3D@105" type="CollisionShape3D" parent="TraversalGym/Course3/LevelBlock_Traversable17" unique_id=1994393461]
+shape = SubResource("BoxShape3D_iafhg")
+
+[node name="@MeshInstance3D@106" type="MeshInstance3D" parent="TraversalGym/Course3/LevelBlock_Traversable17" unique_id=478133052]
+material_override = SubResource("ShaderMaterial_uhfbm")
+mesh = SubResource("BoxMesh_lqb7q")
+
+[node name="@Label3D@107" type="Label3D" parent="TraversalGym/Course3" unique_id=2080872796]
+transform = Transform3D(1.2246469e-16, -2.758e-42, -1, 2.2524315e-26, 1, 0, 1, -2.2524315e-26, 1.2246469e-16, 43.9995, 0.7, -8)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "1 M"
+font_size = 64
+outline_size = 0
+
+[node name="Course5" type="Node3D" parent="TraversalGym" unique_id=1502820572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0.3, -16)
+
+[node name="LevelBlock18" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=578574321]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 3.1, 8)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@20" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock18" unique_id=1202177741]
+shape = SubResource("BoxShape3D_ok3ci")
+
+[node name="@MeshInstance3D@21" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock18" unique_id=1968178800]
+material_override = SubResource("ShaderMaterial_j4eoh")
+mesh = SubResource("BoxMesh_bhb1k")
+
+[node name="LevelBlock19" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=1129745063]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.399998, 4, 8)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@22" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock19" unique_id=1961559655]
+shape = SubResource("BoxShape3D_tcyu4")
+
+[node name="@MeshInstance3D@23" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock19" unique_id=1754334815]
+material_override = SubResource("ShaderMaterial_bo6tc")
+mesh = SubResource("BoxMesh_7iqcu")
+
+[node name="LevelBlock20" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=1219960756]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.899998, 4.7, 8)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@24" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock20" unique_id=510264941]
+shape = SubResource("BoxShape3D_v4d4p")
+
+[node name="@MeshInstance3D@25" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock20" unique_id=1025154998]
+material_override = SubResource("ShaderMaterial_3fqns")
+mesh = SubResource("BoxMesh_sc620")
+
+[node name="LevelBlock21" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=301639325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.2, 6.1, 8.01)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@26" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock21" unique_id=364056117]
+shape = SubResource("BoxShape3D_421lv")
+
+[node name="@MeshInstance3D@27" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock21" unique_id=121275929]
+material_override = SubResource("ShaderMaterial_jide8")
+mesh = SubResource("BoxMesh_4h8xp")
+
+[node name="LevelBlock15" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=1739449975]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.1, 6.101, 8.000001)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@28" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock15" unique_id=1860824833]
+shape = SubResource("CylinderShape3D_ql8jr")
+
+[node name="@MeshInstance3D@29" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock15" unique_id=1109873050]
+material_override = SubResource("ShaderMaterial_nj2gj")
+mesh = SubResource("CylinderMesh_msn66")
+
+[node name="LevelBlock23" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=507368687]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.6, 3.1, 9)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@30" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock23" unique_id=1579189523]
+shape = SubResource("BoxShape3D_xmwm8")
+
+[node name="@MeshInstance3D@31" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock23" unique_id=1387467895]
+material_override = SubResource("ShaderMaterial_u0n8q")
+mesh = SubResource("BoxMesh_d5irf")
+
+[node name="LevelBlock24" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=1117745676]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.6, 4.7, 8)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@32" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock24" unique_id=1149504230]
+shape = SubResource("BoxShape3D_ltwek")
+
+[node name="@MeshInstance3D@33" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock24" unique_id=239079115]
+material_override = SubResource("ShaderMaterial_idnaj")
+mesh = SubResource("BoxMesh_vwqyp")
+
+[node name="LevelBlock26" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=1242139068]
+transform = Transform3D(0.0871557, 0.9961947, 0, -0.9961947, 0.0871557, 0, 0, 0, 1, 66.58969, 5.136159, 8)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@34" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock26" unique_id=725441449]
+shape = SubResource("BoxShape3D_smfc2")
+
+[node name="@MeshInstance3D@35" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock26" unique_id=95265797]
+material_override = SubResource("ShaderMaterial_u5upv")
+mesh = SubResource("BoxMesh_om2me")
+
+[node name="@Label3D@36" type="Label3D" parent="TraversalGym/Course5" unique_id=173678867]
+transform = Transform3D(1.06735085e-17, 0.9961947, -0.0871557, -1.2199866e-16, 0.0871557, 0.9961947, 1, -6.617445e-24, 1.2246469e-16, 66.082855, 5.1924, 8)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "SPRINT"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock22" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=1171720595]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.3, 3.5, 8)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@37" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock22" unique_id=1361165567]
+shape = SubResource("BoxShape3D_iij8i")
+
+[node name="@MeshInstance3D@38" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock22" unique_id=925039645]
+material_override = SubResource("ShaderMaterial_7kuto")
+mesh = SubResource("BoxMesh_k1glb")
+
+[node name="@Label3D@39" type="Label3D" parent="TraversalGym/Course5" unique_id=664576536]
+transform = Transform3D(1.2246469e-16, -2.758e-42, -1, 2.2524315e-26, 1, 0, 1, -2.2524315e-26, 1.2246469e-16, 40.1998, 3.5, 8)
+pixel_size = 0.00546875
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "Press / Hold Jump to
+catch ledges while falling"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock_Traversable33" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=1696060367]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1, 2.6, 8)
+
+[node name="@CollisionShape3D@79" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock_Traversable33" unique_id=1375600326]
+shape = SubResource("BoxShape3D_clbla")
+
+[node name="@MeshInstance3D@80" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock_Traversable33" unique_id=850797550]
+material_override = SubResource("ShaderMaterial_iobf8")
+mesh = SubResource("BoxMesh_kbk4x")
+
+[node name="LevelBlock_Traversable32" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=927145309]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.643974, 4.672261, 8)
+
+[node name="@CollisionShape3D@81" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock_Traversable32" unique_id=1269352654]
+shape = SubResource("BoxShape3D_p1qlp")
+
+[node name="@MeshInstance3D@82" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock_Traversable32" unique_id=625881941]
+material_override = SubResource("ShaderMaterial_bdomq")
+mesh = SubResource("BoxMesh_tvrmj")
+
+[node name="LevelBlock_Traversable35" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=1793927084]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.199997, 5.8999996, 9)
+
+[node name="@CollisionShape3D@83" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock_Traversable35" unique_id=429051894]
+shape = SubResource("BoxShape3D_7ujeh")
+
+[node name="@MeshInstance3D@84" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock_Traversable35" unique_id=959169566]
+material_override = SubResource("ShaderMaterial_ty36l")
+mesh = SubResource("BoxMesh_speit")
+
+[node name="LevelBlock_Traversable36" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=1099090534]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.8, 5.2, 9)
+
+[node name="@CollisionShape3D@85" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock_Traversable36" unique_id=949162466]
+shape = SubResource("BoxShape3D_wb1uj")
+
+[node name="@MeshInstance3D@86" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock_Traversable36" unique_id=1511420380]
+material_override = SubResource("ShaderMaterial_f55ft")
+mesh = SubResource("BoxMesh_ovgnb")
+
+[node name="LevelBlock_Traversable19" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=992962449]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.3, 4.5, 7)
+
+[node name="@CollisionShape3D@108" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock_Traversable19" unique_id=1523399972]
+shape = SubResource("BoxShape3D_kwu62")
+
+[node name="@MeshInstance3D@109" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock_Traversable19" unique_id=2113565742]
+material_override = SubResource("ShaderMaterial_i7b3e")
+mesh = SubResource("BoxMesh_vfkgb")
+
+[node name="LevelBlock_Traversable20" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=1403790666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.3, 5, 9)
+
+[node name="@CollisionShape3D@110" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock_Traversable20" unique_id=1772869639]
+shape = SubResource("BoxShape3D_1ep04")
+
+[node name="@MeshInstance3D@111" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock_Traversable20" unique_id=1566538708]
+material_override = SubResource("ShaderMaterial_xrpag")
+mesh = SubResource("BoxMesh_4a5sc")
+
+[node name="LevelBlock_Traversable21" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=1477318584]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.199997, 6.3999996, 7)
+
+[node name="@CollisionShape3D@112" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock_Traversable21" unique_id=1875315798]
+shape = SubResource("BoxShape3D_w33q4")
+
+[node name="@MeshInstance3D@113" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock_Traversable21" unique_id=1119078100]
+material_override = SubResource("ShaderMaterial_dk6qd")
+mesh = SubResource("BoxMesh_nfwxq")
+
+[node name="LevelBlock_Traversable26" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=305192528]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.8, 4.7, 7)
+
+[node name="@CollisionShape3D@114" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock_Traversable26" unique_id=1766590822]
+shape = SubResource("BoxShape3D_jptc6")
+
+[node name="@MeshInstance3D@115" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock_Traversable26" unique_id=1252225002]
+material_override = SubResource("ShaderMaterial_1d5u2")
+mesh = SubResource("BoxMesh_fdwjd")
+
+[node name="LevelBlock_Traversable27" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=988904407]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.6, 6.1, 8.01)
+
+[node name="@CollisionShape3D@116" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock_Traversable27" unique_id=957334711]
+shape = SubResource("BoxShape3D_gxvwf")
+
+[node name="@MeshInstance3D@117" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock_Traversable27" unique_id=161559038]
+material_override = SubResource("ShaderMaterial_fkalo")
+mesh = SubResource("BoxMesh_tmks3")
+
+[node name="LevelBlock_Traversable28" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=1248189079]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.499996, 4, 8)
+
+[node name="@CollisionShape3D@118" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock_Traversable28" unique_id=1337177659]
+shape = SubResource("BoxShape3D_appgx")
+
+[node name="@MeshInstance3D@119" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock_Traversable28" unique_id=70662113]
+material_override = SubResource("ShaderMaterial_y2y7i")
+mesh = SubResource("BoxMesh_iri6o")
+
+[node name="LevelBlock_Traversable29" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=1952557759]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.8, 5.7, 8)
+
+[node name="@CollisionShape3D@120" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock_Traversable29" unique_id=1584326419]
+shape = SubResource("BoxShape3D_albe2")
+
+[node name="@MeshInstance3D@121" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock_Traversable29" unique_id=2047239595]
+material_override = SubResource("ShaderMaterial_d3p7y")
+mesh = SubResource("BoxMesh_plen7")
+
+[node name="LevelBlock_Traversable30" type="StaticBody3D" parent="TraversalGym/Course5" unique_id=1501173772]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.499996, 5.7999997, 8)
+
+[node name="@CollisionShape3D@122" type="CollisionShape3D" parent="TraversalGym/Course5/LevelBlock_Traversable30" unique_id=434175968]
+shape = SubResource("BoxShape3D_epb10")
+
+[node name="@MeshInstance3D@123" type="MeshInstance3D" parent="TraversalGym/Course5/LevelBlock_Traversable30" unique_id=1980269101]
+material_override = SubResource("ShaderMaterial_sr7al")
+mesh = SubResource("BoxMesh_cv87a")
+
+[node name="Slope" type="Node3D" parent="TraversalGym" unique_id=1898557234]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 181.92, -8.97, 8)
+
+[node name="LevelBlock47" type="StaticBody3D" parent="TraversalGym/Slope" unique_id=1989692705]
+transform = Transform3D(0.0871557, 0.9961947, 0, -0.9961947, 0.0871557, 0, 0, 0, 1, 68.960556, 16.182777, 16)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@11" type="CollisionShape3D" parent="TraversalGym/Slope/LevelBlock47" unique_id=890905242]
+shape = SubResource("BoxShape3D_54w2y")
+
+[node name="@MeshInstance3D@12" type="MeshInstance3D" parent="TraversalGym/Slope/LevelBlock47" unique_id=950962671]
+material_override = SubResource("ShaderMaterial_n5gcj")
+mesh = SubResource("BoxMesh_jud3p")
+
+[node name="@Label3D@13" type="Label3D" parent="TraversalGym/Slope" unique_id=390355069]
+transform = Transform3D(-8.709011e-08, -0.9961947, -0.0871557, -7.619393e-09, -0.0871557, 0.9961947, -1, 8.742278e-08, 1.2246469e-16, 68.95182, 16.282598, 16)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "5°"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock48" type="StaticBody3D" parent="TraversalGym/Slope" unique_id=1480371752]
+transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 71.94804, 16.269554, 16)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@14" type="CollisionShape3D" parent="TraversalGym/Slope/LevelBlock48" unique_id=1555705454]
+shape = SubResource("BoxShape3D_5ndhr")
+
+[node name="@MeshInstance3D@15" type="MeshInstance3D" parent="TraversalGym/Slope/LevelBlock48" unique_id=729787763]
+material_override = SubResource("ShaderMaterial_6t3ch")
+mesh = SubResource("BoxMesh_1l6te")
+
+[node name="LevelBlock34" type="StaticBody3D" parent="TraversalGym/Slope" unique_id=1670876346]
+transform = Transform3D(0.17364836, 0.98480767, 0, -0.98480767, 0.17364836, 0, 0, 0, 1, 33.98698, 0.24881595, 16)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@40" type="CollisionShape3D" parent="TraversalGym/Slope/LevelBlock34" unique_id=971232068]
+shape = SubResource("BoxShape3D_b3ejn")
+
+[node name="@MeshInstance3D@41" type="MeshInstance3D" parent="TraversalGym/Slope/LevelBlock34" unique_id=1568414557]
+material_override = SubResource("ShaderMaterial_c1c2k")
+mesh = SubResource("BoxMesh_qbjlx")
+
+[node name="@Label3D@42" type="Label3D" parent="TraversalGym/Slope" unique_id=945366927]
+transform = Transform3D(-8.609462e-08, -0.9848077, -0.17364824, -1.5180822e-08, -0.17364836, 0.9848077, -0.9999999, 8.742277e-08, 1.2246467e-16, 33.96958, 0.34749335, 16)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "10°"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock35" type="StaticBody3D" parent="TraversalGym/Slope" unique_id=2111237769]
+transform = Transform3D(0.25881904, 0.9659258, 0, -0.9659258, 0.25881904, 0, 0, 0, 1, 37.896965, 1.1156383, 16)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@43" type="CollisionShape3D" parent="TraversalGym/Slope/LevelBlock35" unique_id=953337325]
+shape = SubResource("BoxShape3D_30o8g")
+
+[node name="@MeshInstance3D@44" type="MeshInstance3D" parent="TraversalGym/Slope/LevelBlock35" unique_id=1644539072]
+material_override = SubResource("ShaderMaterial_p7frq")
+mesh = SubResource("BoxMesh_g3e2o")
+
+[node name="@Label3D@45" type="Label3D" parent="TraversalGym/Slope" unique_id=1667744778]
+transform = Transform3D(-8.444392e-08, -0.9659258, -0.25881898, -2.262668e-08, -0.25881904, 0.9659258, -1, 8.742278e-08, 1.2246469e-16, 37.87103, 1.212424, 16)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "15°"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock36" type="StaticBody3D" parent="TraversalGym/Slope" unique_id=838926762]
+transform = Transform3D(0.3420201, 0.9396927, 0, -0.9396927, 0.3420201, 0, 0, 0, 1, 41.71652, 2.3199399, 16)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@46" type="CollisionShape3D" parent="TraversalGym/Slope/LevelBlock36" unique_id=1098904779]
+shape = SubResource("BoxShape3D_slf4x")
+
+[node name="@MeshInstance3D@47" type="MeshInstance3D" parent="TraversalGym/Slope/LevelBlock36" unique_id=688404796]
+material_override = SubResource("ShaderMaterial_ypo2r")
+mesh = SubResource("BoxMesh_vnpc5")
+
+[node name="@Label3D@48" type="Label3D" parent="TraversalGym/Slope" unique_id=2055093544]
+transform = Transform3D(-8.215054e-08, -0.9396927, -0.34202015, -2.9900345e-08, -0.3420201, 0.9396927, -1, 8.742278e-08, 1.2246469e-16, 41.68225, 2.4140973, 16)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "20°"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock37" type="StaticBody3D" parent="TraversalGym/Slope" unique_id=1161088995]
+transform = Transform3D(0.42261833, 0.90630776, 0, -0.90630776, 0.42261833, 0, 0, 0, 1, 45.41658, 3.8525553, 16)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@49" type="CollisionShape3D" parent="TraversalGym/Slope/LevelBlock37" unique_id=2007827515]
+shape = SubResource("BoxShape3D_db5hv")
+
+[node name="@MeshInstance3D@50" type="MeshInstance3D" parent="TraversalGym/Slope/LevelBlock37" unique_id=505705733]
+material_override = SubResource("ShaderMaterial_6cpub")
+mesh = SubResource("BoxMesh_ffpg5")
+
+[node name="@Label3D@51" type="Label3D" parent="TraversalGym/Slope" unique_id=1077542770]
+transform = Transform3D(-7.923194e-08, -0.90630776, -0.4226184, -3.6946467e-08, -0.42261833, 0.90630776, -1, 8.742278e-08, 1.2246469e-16, 45.374233, 3.9433675, 16)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "25°"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock38" type="StaticBody3D" parent="TraversalGym/Slope" unique_id=61134926]
+transform = Transform3D(0.5, 0.8660254, 0, -0.8660254, 0.5, 0, 0, 0, 1, 48.968987, 5.70182, 16)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@52" type="CollisionShape3D" parent="TraversalGym/Slope/LevelBlock38" unique_id=475547595]
+shape = SubResource("BoxShape3D_43d7i")
+
+[node name="@MeshInstance3D@53" type="MeshInstance3D" parent="TraversalGym/Slope/LevelBlock38" unique_id=1170012726]
+material_override = SubResource("ShaderMaterial_cutyp")
+mesh = SubResource("BoxMesh_8xc4d")
+
+[node name="@Label3D@54" type="Label3D" parent="TraversalGym/Slope" unique_id=1478335073]
+transform = Transform3D(-7.5710346e-08, -0.8660254, -0.5, -4.371139e-08, -0.5, 0.8660254, -1, 8.742278e-08, 1.2246467e-16, 48.918884, 5.788596, 16)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "30°"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock39" type="StaticBody3D" parent="TraversalGym/Slope" unique_id=282543512]
+transform = Transform3D(0.57357645, 0.819152, 0, -0.819152, 0.57357645, 0, 0, 0, 1, 52.3467, 7.8536606, 16)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@55" type="CollisionShape3D" parent="TraversalGym/Slope/LevelBlock39" unique_id=840103987]
+shape = SubResource("BoxShape3D_83thi")
+
+[node name="@MeshInstance3D@56" type="MeshInstance3D" parent="TraversalGym/Slope/LevelBlock39" unique_id=2108423544]
+material_override = SubResource("ShaderMaterial_koa75")
+mesh = SubResource("BoxMesh_2op70")
+
+[node name="@Label3D@57" type="Label3D" parent="TraversalGym/Slope" unique_id=245962847]
+transform = Transform3D(-7.161254e-08, -0.819152, -0.57357633, -5.0143647e-08, -0.57357645, 0.819152, -0.9999999, 8.742277e-08, 1.2246467e-16, 52.289227, 7.9357395, 16)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "35°"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock40" type="StaticBody3D" parent="TraversalGym/Slope" unique_id=246085781]
+transform = Transform3D(0.64278764, 0.76604444, 0, -0.76604444, 0.64278764, 0, 0, 0, 1, 55.524014, 10.291699, 16)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@58" type="CollisionShape3D" parent="TraversalGym/Slope/LevelBlock40" unique_id=653345970]
+shape = SubResource("BoxShape3D_3xenl")
+
+[node name="@MeshInstance3D@59" type="MeshInstance3D" parent="TraversalGym/Slope/LevelBlock40" unique_id=816669775]
+material_override = SubResource("ShaderMaterial_yynpt")
+mesh = SubResource("BoxMesh_v65ao")
+
+[node name="@Label3D@60" type="Label3D" parent="TraversalGym/Slope" unique_id=40503056]
+transform = Transform3D(-6.696973e-08, -0.76604444, -0.6427877, -5.619428e-08, -0.64278764, 0.76604444, -1, 8.742278e-08, 1.2246469e-16, 55.459602, 10.368457, 16)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "40°"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock41" type="StaticBody3D" parent="TraversalGym/Slope" unique_id=1138162397]
+transform = Transform3D(0.57357645, 0.819152, 0, -0.819152, 0.57357645, 0, 0, 0, 1, 57.868332, 12.14554, 16)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@61" type="CollisionShape3D" parent="TraversalGym/Slope/LevelBlock41" unique_id=1839337876]
+shape = SubResource("BoxShape3D_3ppff")
+
+[node name="@MeshInstance3D@62" type="MeshInstance3D" parent="TraversalGym/Slope/LevelBlock41" unique_id=1695974365]
+material_override = SubResource("ShaderMaterial_xwsfi")
+mesh = SubResource("BoxMesh_cwhec")
+
+[node name="@Label3D@63" type="Label3D" parent="TraversalGym/Slope" unique_id=922165023]
+transform = Transform3D(-7.161254e-08, -0.819152, -0.57357633, -5.0143647e-08, -0.57357645, 0.819152, -0.9999999, 8.742277e-08, 1.2246467e-16, 57.81086, 12.227619, 16)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "35°"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock42" type="StaticBody3D" parent="TraversalGym/Slope" unique_id=1968398648]
+transform = Transform3D(0.5, 0.8660254, 0, -0.8660254, 0.5, 0, 0, 0, 1, 59.546154, 13.214429, 16)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@64" type="CollisionShape3D" parent="TraversalGym/Slope/LevelBlock42" unique_id=1085431055]
+shape = SubResource("BoxShape3D_d5ouc")
+
+[node name="@MeshInstance3D@65" type="MeshInstance3D" parent="TraversalGym/Slope/LevelBlock42" unique_id=492365887]
+material_override = SubResource("ShaderMaterial_6bfqh")
+mesh = SubResource("BoxMesh_rrs1e")
+
+[node name="@Label3D@66" type="Label3D" parent="TraversalGym/Slope" unique_id=355839052]
+transform = Transform3D(-7.5710346e-08, -0.8660254, -0.5, -4.371139e-08, -0.5, 0.8660254, -1, 8.742278e-08, 1.2246467e-16, 59.49605, 13.301205, 16)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "30°"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock43" type="StaticBody3D" parent="TraversalGym/Slope" unique_id=1789669197]
+transform = Transform3D(0.42261833, 0.90630776, 0, -0.90630776, 0.42261833, 0, 0, 0, 1, 61.310745, 14.1330185, 16)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@67" type="CollisionShape3D" parent="TraversalGym/Slope/LevelBlock43" unique_id=1700297082]
+shape = SubResource("BoxShape3D_g31u5")
+
+[node name="@MeshInstance3D@68" type="MeshInstance3D" parent="TraversalGym/Slope/LevelBlock43" unique_id=1886610280]
+material_override = SubResource("ShaderMaterial_td5iv")
+mesh = SubResource("BoxMesh_4fwy4")
+
+[node name="@Label3D@69" type="Label3D" parent="TraversalGym/Slope" unique_id=90837197]
+transform = Transform3D(-7.923194e-08, -0.90630776, -0.4226184, -3.6946467e-08, -0.42261833, 0.90630776, -1, 8.742278e-08, 1.2246469e-16, 61.268402, 14.223831, 16)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "25°"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock44" type="StaticBody3D" parent="TraversalGym/Slope" unique_id=12836877]
+transform = Transform3D(0.3420201, 0.9396927, 0, -0.9396927, 0.3420201, 0, 0, 0, 1, 63.14869, 14.894319, 16)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@70" type="CollisionShape3D" parent="TraversalGym/Slope/LevelBlock44" unique_id=18401492]
+shape = SubResource("BoxShape3D_l5p7p")
+
+[node name="@MeshInstance3D@71" type="MeshInstance3D" parent="TraversalGym/Slope/LevelBlock44" unique_id=1104741223]
+material_override = SubResource("ShaderMaterial_vky28")
+mesh = SubResource("BoxMesh_d635u")
+
+[node name="@Label3D@72" type="Label3D" parent="TraversalGym/Slope" unique_id=1677467576]
+transform = Transform3D(-8.215054e-08, -0.9396927, -0.34202015, -2.9900345e-08, -0.3420201, 0.9396927, -1, 8.742278e-08, 1.2246469e-16, 63.114418, 14.988476, 16)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "20°"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock45" type="StaticBody3D" parent="TraversalGym/Slope" unique_id=534185470]
+transform = Transform3D(0.25881904, 0.9659258, 0, -0.9659258, 0.25881904, 0, 0, 0, 1, 65.04599, 15.492536, 16)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@73" type="CollisionShape3D" parent="TraversalGym/Slope/LevelBlock45" unique_id=679675450]
+shape = SubResource("BoxShape3D_vbci2")
+
+[node name="@MeshInstance3D@74" type="MeshInstance3D" parent="TraversalGym/Slope/LevelBlock45" unique_id=2040902545]
+material_override = SubResource("ShaderMaterial_1lic4")
+mesh = SubResource("BoxMesh_pudow")
+
+[node name="@Label3D@75" type="Label3D" parent="TraversalGym/Slope" unique_id=1186983803]
+transform = Transform3D(-8.444392e-08, -0.9659258, -0.25881898, -2.262668e-08, -0.25881904, 0.9659258, -1, 8.742278e-08, 1.2246469e-16, 65.02005, 15.589321, 16)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "15°"
+font_size = 64
+outline_size = 0
+
+[node name="LevelBlock46" type="StaticBody3D" parent="TraversalGym/Slope" unique_id=2067647185]
+transform = Transform3D(0.17364836, 0.98480767, 0, -0.98480767, 0.17364836, 0, 0, 0, 1, 66.988205, 15.923114, 16)
+metadata/traversable = false
+
+[node name="@CollisionShape3D@76" type="CollisionShape3D" parent="TraversalGym/Slope/LevelBlock46" unique_id=559964200]
+shape = SubResource("BoxShape3D_2bamd")
+
+[node name="@MeshInstance3D@77" type="MeshInstance3D" parent="TraversalGym/Slope/LevelBlock46" unique_id=1581593122]
+material_override = SubResource("ShaderMaterial_12ntp")
+mesh = SubResource("BoxMesh_wdhet")
+
+[node name="@Label3D@78" type="Label3D" parent="TraversalGym/Slope" unique_id=745600382]
+transform = Transform3D(-8.609462e-08, -0.9848077, -0.17364824, -1.5180822e-08, -0.17364836, 0.9848077, -0.9999999, 8.742277e-08, 1.2246467e-16, 66.97081, 16.021791, 16)
+pixel_size = 0.0078125
+double_sided = false
+modulate = Color(0.85, 0.86, 0.88, 1)
+text = "10°"
+font_size = 64
+outline_size = 0
+
+[node name="SpawnPreview" type="Node3D" parent="." unique_id=2093549048 instance=ExtResource("1_2q6dc")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)

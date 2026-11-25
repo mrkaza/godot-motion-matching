@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+# Builds the native extension (pose search and blend stack node) into ../bin. Windows with MinGW:
+#   scons platform=windows target=template_debug use_mingw=yes
+#   scons platform=windows target=template_release use_mingw=yes
+# godot-cpp is a git submodule: git submodule update --init
+ARGUMENTS.setdefault("api_version", "4.6")
+env = SConscript("godot-cpp/SConstruct")
+env.Append(CPPPATH=["src/"])
+library = env.SharedLibrary(
+    "../bin/libgasp_native{}{}".format(env["suffix"].replace(".dev", ""), env["SHLIBSUFFIX"]),
+    source=Glob("src/*.cpp"),
+)
+Default(library)

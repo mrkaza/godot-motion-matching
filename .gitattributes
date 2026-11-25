@@ -1,0 +1,24 @@
+# Text files use LF in the repository
+* text=auto eol=lf
+
+# Windows scripts keep CRLF
+*.ps1 text eol=crlf
+
+# Binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.exr binary
+*.hdr binary
+*.glb binary
+*.fbx binary
+*.blend binary
+*.wav binary
+*.ogg binary
+*.mp3 binary
+*.dll binary
+*.so binary
+*.dylib binary
+*.res binary
+*.scn binary
